@@ -1,0 +1,4 @@
+programs:
+  - toshitai
+  - tsukinone
+outputPath: ./output
