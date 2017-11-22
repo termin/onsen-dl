@@ -1,0 +1,9 @@
+{
+  "name": "onsen-dl",
+  "version": "0.0.1",
+  "main": "onsen-dl.js",
+  "license": "MIT",
+  "dependencies": {
+    "onsen-node": "^1.1.3"
+  }
+}
