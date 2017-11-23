@@ -43,3 +43,26 @@ $ cp docker-compose.yml.example docker-compose.yml # 設定変更が必要なら
 $ docker-compose build
 $ docker-compose run --rm node
 ```
+
+# コードが修正されたら
+
+``git pull``した前提
+buildしなおす
+```shell
+$ docker-compose build
+```
+or
+
+``yarn install``する
+```shell
+$ docker-compose run --rm yarn install
+```
+
+# 開発
+
+詳しくは #2 を参照
+```yaml
+- .:onsen-dl
+# - ./output:/onsen-dl/output
+# - ./cache:/onsen-dl/cache
+```
