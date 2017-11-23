@@ -6,3 +6,4 @@ services:
       # - .:/onsen-dl
       - ./output:/onsen-dl/output
       - ./cache:/onsen-dl/cache
+      - ./config.yml:/onsen-dl/config.yml
