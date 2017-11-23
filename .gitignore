@@ -108,3 +108,4 @@ tags
 /cache/*
 /output/*
 /config.yml
+docker-compose.yml

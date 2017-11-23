@@ -1,0 +1,7 @@
+version: '3'
+services:
+  node:
+    build: .
+    volumes:
+      - ./output:/onsen-dl/output
+      - ./cache:/onsen-dl/cache
