@@ -23,7 +23,7 @@ var download = (info, outputDir, success) => {
     path: outputPath,
     success: success,
     error: () => {
-      console.log('ダウンロード失敗', info.url, info.count)
+      console.log('ダウンロード失敗', info.url, info.count, info.update)
     }
   });
 }
@@ -42,7 +42,7 @@ try {
   return
 }
 
-// ファイルがあって今回のinfoと同じcount => スキップ
+// ファイルがあって今回と同じ配信日(update) => スキップ
 // それ以外 => ダウンロード
 // ダウンロード完了後にjsonを保存
 programs.forEach(program => {
@@ -55,8 +55,8 @@ programs.forEach(program => {
     fs.readFile(jsonPath, 'utf8', (err, jsonStr) => {
       if (err === null) {
         let json = JSON.parse(jsonStr)
-        if (info.count === json.count) {
-          // console.log('ダウンロード済み', program, info.count)
+        if (info.update === json.update) {
+          // console.log('ダウンロード済み', program, info.update)
           return
         }
       }
