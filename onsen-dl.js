@@ -16,7 +16,8 @@ var download = (info, outputDir, success) => {
   let url = info.moviePath.pc;
   let count = info.count;
   let extension = path.extname(url);
-  let outputPath = path.join(outputDir, info.title + ' 第' + count + '回' + extension);
+  let updated = info.update.replace(/\./g, '-')
+  let outputPath = path.join(outputDir, `${info.title} 第${count}回 ${updated}${extension}`);
   return downloader.get({
     url: url,
     path: outputPath,
