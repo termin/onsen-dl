@@ -42,7 +42,7 @@ try {
   return
 }
 
-// ファイルがあって今回と同じ配信日(update) => スキップ
+// 処理済みjsonファイルがあって今回と同じ配信日(update) => スキップ
 // それ以外 => ダウンロード
 // ダウンロード完了後にjsonを保存
 programs.forEach(program => {
