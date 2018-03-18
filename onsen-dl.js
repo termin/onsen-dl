@@ -7,6 +7,18 @@ var suzu = require('suzu-downloader')
 var downloader = new suzu()
 
 /**
+ * Windowsでファイル名に使用出来ない文字列を全角に変換する
+ * @param {string} str - 変換対象文字列
+ * @return {string}
+ */
+var toZenkaku = (str) => {
+  return str.replace(/[¥\/:\*\?\"\<\>|]/g, (match) => {
+    if (match == "¥") return "￥"
+    return String.fromCharCode(match.charCodeAt(0) + 0xFEE0);
+  })
+}
+
+/**
  * ダウンロードする
  * @param {Object} info - onsen.getInfo()で取得したハッシュ
  * @param {string} outputDir - 出力先ディレクトリのパス
@@ -17,7 +29,8 @@ var download = (info, outputDir, success) => {
   let count = info.count;
   let extension = path.extname(url);
   let updated = info.update.replace(/\./g, '-')
-  let outputPath = path.join(outputDir, `${info.title} 第${count}回 ${updated}${extension}`);
+  let filename = toZenkaku(`${info.title} 第${count}回 ${updated}${extension}`)
+  let outputPath = path.join(outputDir, filename);
   return downloader.get({
     url: url,
     path: outputPath,
