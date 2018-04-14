@@ -26,6 +26,11 @@ var toZenkaku = (str) => {
  */
 var download = (info, outputDir, success) => {
   let url = info.moviePath.pc;
+  // 配信前の番組では空
+  if (url.length == 0) {
+    return false;
+  }
+
   let count = info.count;
   let extension = path.extname(url);
   let updated = info.update.replace(/\./g, '-')
