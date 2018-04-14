@@ -5,6 +5,7 @@ var yaml = require('js-yaml')
 var cacheDir = path.join(__dirname, 'cache')
 var suzu = require('suzu-downloader')
 var downloader = new suzu()
+var moment = require('moment')
 
 /**
  * Windowsでファイル名に使用出来ない文字列を全角に変換する
@@ -16,6 +17,19 @@ var toZenkaku = (str) => {
     if (match == "¥") return "￥"
     return String.fromCharCode(match.charCodeAt(0) + 0xFEE0);
   })
+}
+
+/**
+ * onsenの日付フォーマットをパースしてmoment objectを返す
+ * @param {string} source onsenのフォーマットな日付文字列
+ * @returns {Object} moment object
+ */
+var parseDateFromOnsen = (source) => {
+  let updated = source.split('.').map((v, index) => {
+    if (index == 1) v--; // jsのMonthは0始まり
+    return parseInt(v)
+  })
+  return moment(updated)
 }
 
 /**
@@ -33,8 +47,10 @@ var download = (info, outputDir, success) => {
 
   let count = info.count;
   let extension = path.extname(url);
-  let updated = info.update.replace(/\./g, '-')
-  let filename = toZenkaku(`${info.title} 第${count}回 ${updated}${extension}`)
+  let updated = parseDateFromOnsen(info.update)
+  let updatedString = updated.format('YYYY-MM-DD')
+
+  let filename = toZenkaku(`${info.title} 第${count}回 ${updatedString}${extension}`)
   let outputPath = path.join(outputDir, filename);
   return downloader.get({
     url: url,
