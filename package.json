@@ -4,8 +4,8 @@
   "main": "onsen-dl.js",
   "license": "MIT",
   "dependencies": {
-    "js-yaml": "^3.10.0",
-    "moment": "^2.22.0",
+    "js-yaml": "^3.13.0",
+    "moment": "^2.24.0",
     "onsen-node": "^1.1.3",
     "suzu-downloader": "^0.0.4"
   },
