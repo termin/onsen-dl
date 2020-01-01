@@ -3,7 +3,10 @@ services:
   node:
     build: .
     volumes:
-      # - .:/onsen-dl
+      - .:/onsen-dl
       - ./output:/onsen-dl/output
       - ./cache:/onsen-dl/cache
       - ./config.yml:/onsen-dl/config.yml
+      - node_modules:/onsen-dl/node_modules
+volumes:
+  node_modules:
